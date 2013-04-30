@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.ui.editors">
+      <editor
+            name="JBehave Editor"
+            extensions="story"
+            default="true"
+            icon="icons/jbehave-icon.png"
+            contributorClass="org.eclipse.ui.texteditor.BasicTextEditorActionContributor"
+            class="org.jbehave.contrib.eclipse.plugin.editor.JBehaveEditor"
+            id="org.jbehave.contrib.eclipse.plugin.editor.JBehaveEditor">
+      </editor>
+   </extension>
+   <extension point="org.eclipse.ui.commands">
+      <category
+            id="jbehave-eclipse-plugin.commands.category"
+            name="Source Category">
+      </category>
+      <command
+            categoryId="jbehave-eclipse-plugin.commands.category"
+            id="jbehave-eclipse-plugin.commands.sourceCommand"
+            name="Toggle Comment">
+      </command>
+    </extension>
+    <extension point="org.eclipse.ui.bindings">
+      <key
+            commandId="jbehave-eclipse-plugin.commands.sourceCommand"
+            contextId="org.eclipse.ui.contexts.window"
+            schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
+            sequence="M1+/">
+      </key>
+   </extension>
+    <extension
+          point="org.eclipse.ui.handlers">
+       <handler
+             class="org.jbehave.contrib.eclipse.plugin.editor.commands.ToggleCommentHandler"
+             commandId="jbehave-eclipse-plugin.commands.sourceCommand">
+       </handler>
+    </extension>
+    <extension
+          point="org.eclipse.ui.menus">
+       <menuContribution
+             locationURI="menu:org.eclipse.ui.main.menu?after=edit">
+          <menu
+                id="jbehave-eclipse-plugin.menus.sourceMenu"
+                label="Source"
+                mnemonic="M">
+             <command
+                   commandId="jbehave-eclipse-plugin.commands.sourceCommand"
+                   id="jbehave-eclipse-plugin.menus.sourceCommand"
+                   mnemonic="S">
+             </command>
+          </menu>
+       </menuContribution>
+    </extension>
+</plugin>
